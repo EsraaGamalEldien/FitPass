@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FitPass</string>
+    <string name="facebook_app_id">534842617000190</string>
+    <string name="fb_login_protocol_scheme">fb534842617000190</string>
+    <string name="title_classes">Classes</string>
+    <string name="title_gyms">Gyms</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_settings">Settings</string>
+    <string name="photo_shared_element">photo_shared_element</string>
+
+</resources>

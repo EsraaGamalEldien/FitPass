@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "399771137979",
+    "firebase_url": "https://rec1-978.firebaseio.com",
+    "project_id": "rec1-978",
+    "storage_bucket": "rec1-978.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399771137979:android:7beb70a1c4242659",
+        "android_client_info": {
+          "package_name": "com.example.esraa.fitpass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399771137979-dtb61sqgosb2ga24sn8pjateh0g6lnpb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.esraa.fitpass",
+            "certificate_hash": "88c963c453fc3de10a9cd8bbda1aa098b01085d2"
+          }
+        },
+        {
+          "client_id": "399771137979-1j53gn5qiq8t44s3b10fu6qm10s1shrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeYR6A0OC92sIuZY1IUd9T29Wg7v31uco"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399771137979-1j53gn5qiq8t44s3b10fu6qm10s1shrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
