@@ -26,14 +26,13 @@ public class MainActivity extends BaseActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_classes:
-                    loadFragment(ClassesFragment.newInstance());
+                    loadFragment(ClassesFragment.newInstance(null));
                     return true;
                 case R.id.navigation_gyms:
-
-                    loadFragment(GymsFragment.newInstance( false));
+                    loadFragment(GymsFragment.newInstance(false));
                     return true;
                 case R.id.navigation_favorites:
-                    loadFragment(GymsFragment.newInstance( true));
+                    loadFragment(GymsFragment.newInstance(true));
                     return true;
                 case R.id.navigation_settings:
                     loadFragment(new SettingsFragment());
@@ -49,12 +48,17 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(new ClassesFragment());
+        loadFragment(ClassesFragment.newInstance(null));
     }
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

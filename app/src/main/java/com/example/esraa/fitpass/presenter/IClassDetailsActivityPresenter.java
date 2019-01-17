@@ -4,4 +4,6 @@ import com.example.esraa.fitpass.model.ClassModel;
 
 public interface IClassDetailsActivityPresenter {
     void userHasPackage(ClassModel classModel);
+
+    void isClassSubscribed(ClassModel classModel);
 }

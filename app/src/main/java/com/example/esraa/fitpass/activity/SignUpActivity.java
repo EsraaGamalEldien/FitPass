@@ -1,9 +1,10 @@
 package com.example.esraa.fitpass.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 
 import com.example.esraa.fitpass.R;
 import com.example.esraa.fitpass.presenter.ISignUpPresenter;
@@ -17,9 +18,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     private final String TAG = SignUpActivity.this.getClass().getSimpleName();
     @BindView(R.id.email_editText)
-    EditText emailEditText;
+    TextInputEditText emailEditText;
     @BindView(R.id.password_editText)
-    EditText passEditText;
+    TextInputEditText passEditText;
+    @BindView(R.id.password_layout_text_input)
+    TextInputLayout passwordTextInput;
+    @BindView(R.id.email_layout_text_input)
+    TextInputLayout emailTextInput;
     private ISignUpPresenter signUpPresenter;
 
     @Override
@@ -36,21 +41,25 @@ public class SignUpActivity extends AppCompatActivity {
         String pass = passEditText.getText().toString();
 
         if (email.isEmpty()) {
-//            emailTextInput.setError("mandatory field");
-//            emailTextInput.setBackgroundColor(getResources().getColor(R.color.white));
+            emailTextInput.setError(getString(R.string.mandatory_field));
+            emailTextInput.setBackgroundColor(getResources().getColor(R.color.white));
         }
         if (pass.isEmpty()) {
-//            passwordTextInput.setError("mandatory field");
-//            passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
+            passwordTextInput.setError(getString(R.string.mandatory_field));
+            passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
         } else if (pass.length() < 6) {
-//            passwordTextInput.setError("password shouldn't be less than 6 characters");
-//            passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
+            passwordTextInput.setError(getString(R.string.validation_pass_6_char));
+            passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
         }
-        if (!email.isEmpty() && !pass.isEmpty()) {
+        if (!email.isEmpty() && !pass.isEmpty() && pass.length() >= 6) {
             signUpPresenter.createUserAccount(email, pass);
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

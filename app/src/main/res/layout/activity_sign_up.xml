@@ -3,54 +3,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_gray_50"
     android:orientation="vertical"
     tools:context=".activity.SignUpActivity">
+
+
+    <ImageView
+        android:id="@+id/fit_pass_logo"
+        android:layout_width="@dimen/fit_pass_logo_width"
+        android:layout_height="@dimen/fit_pass_logo_height"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/fit_pass_logo_margin"
+        android:src="@drawable/fitpass_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/fit_pass_logo"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/email_editText"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/email_layout_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/edit_text_round_corners"
-            android:hint=" Email"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:singleLine="true" />
+            android:background="@color/blue_gray_50">
 
-        <EditText
-            android:id="@+id/password_editText"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/email_editText_bottomMargin"
+                android:layout_marginEnd="@dimen/email_editText_horizontalMargin"
+                android:layout_marginStart="@dimen/email_editText_horizontalMargin"
+                android:background="@drawable/edit_text_round_corners"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/email_editText_verticalPadding"
+                android:paddingTop="@dimen/email_editText_verticalPadding"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_layout_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/edit_text_round_corners"
-            android:hint=" Password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:singleLine="true" />
+            android:background="@color/blue_gray_50">
+
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/password_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/password_editText_bottom_margin"
+                android:layout_marginEnd="@dimen/password_editText_horizontalMargin"
+                android:layout_marginStart="@dimen/password_editText_horizontalMargin"
+                android:background="@drawable/edit_text_round_corners"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/password_editText_verticalPadding"
+                android:paddingTop="@dimen/password_editText_verticalPadding"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/signUp_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="@dimen/signUp_button_horizontalMargin"
+            android:layout_marginStart="@dimen/signUp_button_horizontalMargin"
             android:background="@drawable/button_round_corners"
-            android:text="create account"
+            android:text="@string/create_account"
             android:textColor="@color/white" />
     </LinearLayout>
 </RelativeLayout>

@@ -13,4 +13,5 @@ public class Constants {
     public static final String CLASS_MODEL = "classModel";
     public static final String USER_CLASSES = "userClasses";
     public static final String HAS_PACKAGE = "hasPackage";
+    public static final String GYM_CLASSES = "gymClasses";
 }

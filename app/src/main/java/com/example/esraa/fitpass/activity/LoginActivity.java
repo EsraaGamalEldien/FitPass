@@ -10,7 +10,6 @@ import android.view.View;
 import com.example.esraa.fitpass.R;
 import com.example.esraa.fitpass.presenter.ILoginPresenter;
 import com.example.esraa.fitpass.presenter.LoginPresenter;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -49,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         presenter = new LoginPresenter(this);
-        presenter.checkIfUserFaceBookLoggedIn();
+        presenter.checkIfUserLoggedIn();
         registerFacebookCallbackLogin();
         registerGoogleSignIn();
     }
@@ -95,19 +94,19 @@ public class LoginActivity extends AppCompatActivity {
         String mail = userNameEditText.getText().toString();
         String pass = passwordEditText.getText().toString();
         if (mail.isEmpty()) {
-            emailTextInput.setError("mandatory field");
+            emailTextInput.setError(getString(R.string.mandatory_field));
             emailTextInput.setBackgroundColor(getResources().getColor(R.color.white));
         }
         if (pass.isEmpty()) {
-            passwordTextInput.setError("mandatory field");
+            passwordTextInput.setError(getString(R.string.mandatory_field));
             passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
         } else if (pass.length() < 6) {
-            passwordTextInput.setError("password shouldn't be less than 6 characters");
+            passwordTextInput.setError(getString(R.string.validation_pass_6_char));
             passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
         }
-        if (!mail.isEmpty() && !pass.isEmpty()) {
+        if (!mail.isEmpty() && !pass.isEmpty() && pass.length() >= 6) {
             presenter.signInWithMailAndPass(mail, pass);
         }
     }
@@ -123,5 +122,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.deleteEventListenerOfDatabase();
+    }
 }

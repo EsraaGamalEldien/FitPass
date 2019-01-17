@@ -11,5 +11,7 @@ public interface ILoginPresenter {
 
     void handleSignInResult(Task<GoogleSignInAccount> task);
 
-    void checkIfUserFaceBookLoggedIn();
+    void checkIfUserLoggedIn();
+
+    void deleteEventListenerOfDatabase();
 }

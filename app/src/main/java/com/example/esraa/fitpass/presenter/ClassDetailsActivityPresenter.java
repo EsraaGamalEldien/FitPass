@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 
+import com.example.esraa.fitpass.R;
 import com.example.esraa.fitpass.model.ClassModel;
 import com.example.esraa.fitpass.model.UserModel;
 import com.example.esraa.fitpass.util.Constants;
 import com.example.esraa.fitpass.util.SharedPreferenceManager;
+import com.example.esraa.fitpass.view.IClassDetailsActivityView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,9 +25,11 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
     private String userId;
     private DatabaseReference databaseReference;
     private int numOfClasses = 12;
+    private IClassDetailsActivityView view;
 
-    public ClassDetailsActivityPresenter(Context context) {
+    public ClassDetailsActivityPresenter(Context context, IClassDetailsActivityView view) {
         this.context = context;
+        this.view=view;
         userId = SharedPreferenceManager.getInstance().getString(Constants.USER_ID);
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
@@ -63,13 +67,61 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
 
     }
 
+    @Override
+    public void isClassSubscribed(final ClassModel classModel) {
+        showProgressDialog(context);
+        Query mQueryRef = databaseReference.child(Constants.USERS)
+                .orderByChild(Constants.USER_ID)
+                .equalTo(userId);
+        mQueryRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
+                hideProgressDialog();
+                checkUserClasses(dataSnapshot, classModel);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                showErrorAlert(context, databaseError.getMessage());
+            }
+
+        });
+
+    }
+
+    private void checkUserClasses(DataSnapshot dataSnapshot, ClassModel classModel) {
+        GenericTypeIndicator<UserModel> genericTypeIndicator =
+                new GenericTypeIndicator<UserModel>() {
+                };
+        UserModel userModel = dataSnapshot.getValue(genericTypeIndicator);
+        if (userModel == null || userModel.getUserClasses() == null) return;
+        for (int i = 0; i < userModel.getUserClasses().size(); i++) {
+            if (classModel.getClassId().equalsIgnoreCase(userModel.getUserClasses().get(i).getClassId())) {
+                view.dimmSubscribeButton();
+            }
+        }
+    }
+
     private void handleUserPackage(DataSnapshot dataSnapshot, ClassModel classModel) {
         GenericTypeIndicator<UserModel> genericTypeIndicator =
                 new GenericTypeIndicator<UserModel>() {
                 };
 
         UserModel userModel = dataSnapshot.getValue(genericTypeIndicator);
-        if (userModel != null && userModel.isHasPackage() && userModel.getUserClasses().size() <= numOfClasses) {
+        if (userModel != null && userModel.isHasPackage() && userModel.getUserClasses()!= null &&
+                userModel.getUserClasses().size() <= numOfClasses) {
             subscribeToClass(classModel, dataSnapshot.getKey());
         } else {
             showSelectingPackageDialog(dataSnapshot.getKey(), classModel);
@@ -85,6 +137,9 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
                                            @NonNull DatabaseReference databaseReference) {
                         if (error != null) {
                             showErrorAlert(context, error.getMessage());
+                        }else{
+                            view.showSuccessToast();
+                            view.dimmSubscribeButton();
                         }
                     }
                 });
@@ -94,8 +149,8 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
         hideProgressDialog();
         final AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(context);
-        builder.setTitle("packages")
-                .setMessage("do you want to subscribe to package  12 class with 2 $")
+        builder.setTitle(R.string.packages)
+                .setMessage(R.string.subscribe_package_msg)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         setUserPackage(key, true, classModel);
@@ -114,19 +169,19 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
 
     private void setUserPackage(final String key, boolean hasPackage, final ClassModel classModel) {
         showProgressDialog(context);
-        databaseReference.child(Constants.USERS).child(key).child(Constants.HAS_PACKAGE).
-                push().setValue(hasPackage,
-                new DatabaseReference.CompletionListener() {
-                    public void onComplete(DatabaseError error,
-                                           @NonNull DatabaseReference databaseReference) {
-                        hideProgressDialog();
-                        if (error != null) {
-                            showErrorAlert(context, error.getMessage());
-                        } else {
-                            subscribeToClass(classModel, key);
-                        }
-                    }
-                });
+        databaseReference.child(Constants.USERS).child(key).child(Constants.HAS_PACKAGE)
+                .setValue(hasPackage,
+                        new DatabaseReference.CompletionListener() {
+                            public void onComplete(DatabaseError error,
+                                                   @NonNull DatabaseReference databaseReference) {
+                                hideProgressDialog();
+                                if (error != null) {
+                                    showErrorAlert(context, error.getMessage());
+                                } else {
+                                    subscribeToClass(classModel, key);
+                                }
+                            }
+                        });
 
     }
 }

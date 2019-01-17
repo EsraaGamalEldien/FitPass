@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gyms_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginEnd="@dimen/gyms_recycler_view_horizontal_margin"
+        android:layout_marginStart="@dimen/gyms_recycler_view_horizontal_margin"
+        android:layout_marginTop="@dimen/gyms_recycler_view_top_margin" />
+
+    <TextView
+        android:id="@+id/no_favorite_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/no_favorite_textView_horizontal_margin"
+        android:layout_marginStart="@dimen/no_favorite_textView_horizontal_margin"
+        android:layout_marginTop="@dimen/no_favorite_textView_top_margin"
+        android:gravity="center"
+        android:text="@string/there_is_no_favorite_gyms"
+        android:textColor="@color/black" />
 
 
 </LinearLayout>

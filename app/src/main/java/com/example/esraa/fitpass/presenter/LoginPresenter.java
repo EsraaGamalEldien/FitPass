@@ -28,6 +28,8 @@ public class LoginPresenter extends BasePresenter implements ILoginPresenter {
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private Activity activity;
+    private Query query;
+    private ValueEventListener valueEventListener;
 
 
     public LoginPresenter(Activity activity) {
@@ -42,14 +44,14 @@ public class LoginPresenter extends BasePresenter implements ILoginPresenter {
         showProgressDialog(activity);
         final UserModel user = new UserModel();
         user.setUserId(userId);
-        Query query = databaseReference.child("users").orderByChild("userId").equalTo(userId);
-        query.addValueEventListener(new ValueEventListener() {
+        query = databaseReference.child(Constants.USERS).orderByChild(Constants.USER_ID).equalTo(userId);
+        valueEventListener = query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     navigateToMainActivity(userId, null);
                 } else {
-                    databaseReference.child("users").push().setValue(user,
+                    databaseReference.child(Constants.USERS).push().setValue(user,
                             new DatabaseReference.CompletionListener() {
                                 public void onComplete(DatabaseError error,
                                                        @NonNull DatabaseReference databaseReference) {
@@ -81,12 +83,18 @@ public class LoginPresenter extends BasePresenter implements ILoginPresenter {
     }
 
     @Override
-    public void checkIfUserFaceBookLoggedIn() {
-        // TODO: 1/7/2019 move to splash activity
+    public void checkIfUserLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn) {
             navigateToMainActivity(accessToken.getUserId(), null);
+        }
+    }
+
+    @Override
+    public void deleteEventListenerOfDatabase() {
+        if (query != null) {
+            query.removeEventListener(valueEventListener);
         }
     }
 
@@ -104,7 +112,7 @@ public class LoginPresenter extends BasePresenter implements ILoginPresenter {
                             }
                         } else {
                             if (null != task.getResult()) {
-                                navigateToMainActivity(task.getResult().getUser().getUid(), null);
+                                saveUserAndNavigate(task.getResult().getUser().getUid());
                             }
                         }
                     }

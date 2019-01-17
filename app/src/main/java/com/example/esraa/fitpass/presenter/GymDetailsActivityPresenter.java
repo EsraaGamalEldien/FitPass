@@ -63,7 +63,7 @@ public class GymDetailsActivityPresenter extends BasePresenter implements IGymDe
     }
 
     private void saveFavoriteGym(String key, GymModel gymModel) {
-        databaseReference.child(Constants.USERS).child(key).child("favouriteGyms").
+        databaseReference.child(Constants.USERS).child(key).child(Constants.FAV_GYMS).
                 push().setValue(gymModel,
                 new DatabaseReference.CompletionListener() {
                     public void onComplete(DatabaseError error,

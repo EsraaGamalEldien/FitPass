@@ -1,7 +1,5 @@
 package com.example.esraa.fitpass.model;
 
-import android.location.Location;
-
 import java.io.Serializable;
 
 public class ClassModel implements Serializable {
@@ -9,14 +7,22 @@ public class ClassModel implements Serializable {
     private String imageUrl;
     private String type;
     private String title;
-    private String lat,lon;
+    private String lat, lon;
     private String day;
     private String startDate;
     private String duration;
     private String description;
     private String instructor;
     private boolean isSubscribed;
+    private String phone;
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getClassId() {
         return classId;
@@ -112,5 +118,9 @@ public class ClassModel implements Serializable {
 
     public void setSubscribed(boolean subscribed) {
         isSubscribed = subscribed;
+    }
+
+    public enum ClassType {
+        FITNESS, CYCLING, YOGA
     }
 }

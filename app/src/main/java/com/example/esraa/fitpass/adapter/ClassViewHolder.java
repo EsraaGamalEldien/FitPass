@@ -1,9 +1,10 @@
 package com.example.esraa.fitpass.adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.esraa.fitpass.R;
@@ -24,7 +25,9 @@ public class ClassViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.class_location_textView)
     TextView locationTextView;
     @BindView(R.id.class_card_view)
-    CardView classCardView;
+    LinearLayout classCardView;
+    @BindView(R.id.class_icon_imageView)
+    ImageView classIconImageView;
 
 
     public ClassViewHolder(@NonNull View itemView) {

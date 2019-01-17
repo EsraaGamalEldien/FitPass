@@ -7,47 +7,40 @@
     android:orientation="vertical"
     tools:context=".activity.LoginActivity">
 
-    <!--<android.support.v7.widget.Toolbar-->
-    <!--android:id="@+id/toolbar"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="40dp"-->
-    <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
-
-
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp" />
+        android:layout_marginBottom="@dimen/fb_login_button_bottom_margin"
+        android:layout_marginEnd="@dimen/fb_login_button_horizontal_margin"
+        android:layout_marginStart="@dimen/fb_login_button_horizontal_margin"
+        android:layout_marginTop="@dimen/fb_login_button_top_margin"
+        android:paddingBottom="@dimen/fb_login_button_bottom_padding"
+        android:paddingTop="@dimen/fb_login_button_top_padding" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginBottom="@dimen/google_login_button_bottom_margin"
+        android:layout_marginEnd="@dimen/google_login_button_horizontal_margin"
+        android:layout_marginStart="@dimen/google_login_button_horizontal_margin" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="@dimen/divider_view_bottom_margin"
+        android:layout_marginEnd="@dimen/divider_view_horizontal_margin"
+        android:layout_marginStart="@dimen/divider_view_horizontal_margin"
         android:orientation="horizontal">
 
         <View
-            android:layout_width="150dp"
-            android:layout_height="2dp"
+            android:layout_width="@dimen/divider_line_width"
+            android:layout_height="@dimen/divider_line_height"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/divider_line_end_margin"
             android:background="@color/black" />
 
         <TextView
@@ -55,13 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:text="OR" />
+            android:text="@string/or" />
 
         <View
-            android:layout_width="150dp"
-            android:layout_height="2dp"
+            android:layout_width="@dimen/divider_line_width"
+            android:layout_height="@dimen/divider_line_height"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/divider_line_start_margin"
             android:background="@color/black" />
 
 
@@ -71,22 +64,21 @@
         android:id="@+id/email_layout_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/blue_gray_50">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/email_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/email_editText_bottom_margin"
+            android:layout_marginEnd="@dimen/email_editText_horizontal_margin"
+            android:layout_marginStart="@dimen/email_editText_horizontal_margin"
             android:background="@drawable/edit_text_round_corners"
-            android:hint=" Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="@dimen/email_editText_vertical_padding"
+            android:paddingTop="@dimen/email_editText_vertical_padding"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
@@ -94,22 +86,21 @@
         android:id="@+id/password_layout_text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/blue_gray_50">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/password_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/password_editText_bottom_margin"
+            android:layout_marginEnd="@dimen/password_editText_horizontal_margin"
+            android:layout_marginStart="@dimen/password_editText_horizontal_margin"
             android:background="@drawable/edit_text_round_corners"
-            android:hint=" Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="@dimen/editText_password_vertical_padding"
+            android:paddingTop="@dimen/editText_password_vertical_padding"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
@@ -117,11 +108,11 @@
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="@dimen/login_button_bottom_margin"
+        android:layout_marginEnd="@dimen/login_button_horizontal_margin"
+        android:layout_marginStart="@dimen/login_button_horizontal_margin"
         android:background="@drawable/button_round_corners"
-        android:text="log in"
+        android:text="@string/log_in"
         android:textColor="@color/white" />
 
     <RelativeLayout
@@ -133,15 +124,15 @@
             android:id="@+id/have_account_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:text="Don't have an account?" />
+            android:layout_marginEnd="@dimen/have_account_textView_end_margin"
+            android:text="@string/dont_have_an_account" />
 
         <TextView
             android:id="@+id/getStarted_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/have_account_textView"
-            android:text="Get Started"
+            android:text="@string/get_started"
             android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
 </LinearLayout>

@@ -10,14 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.esraa.fitpass.util.Constants;
 import com.example.esraa.fitpass.R;
 import com.example.esraa.fitpass.adapter.ClassesAdapter;
 import com.example.esraa.fitpass.model.ClassModel;
 import com.example.esraa.fitpass.presenter.ClassesFragmentPresenter;
 import com.example.esraa.fitpass.presenter.IClassesFragmentPresenter;
+import com.example.esraa.fitpass.util.Constants;
 import com.example.esraa.fitpass.view.IClassesFragmentView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,10 @@ public class ClassesFragment extends Fragment implements IClassesFragmentView {
     private ClassesAdapter classesAdapter;
     private IClassesFragmentPresenter presenter;
 
-    public static ClassesFragment newInstance() {
+    public static ClassesFragment newInstance(List<ClassModel> gymClasses) {
         ClassesFragment fragment = new ClassesFragment();
         Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.GYM_CLASSES, (Serializable) gymClasses);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -45,7 +47,12 @@ public class ClassesFragment extends Fragment implements IClassesFragmentView {
         ButterKnife.bind(this, view);
         setupRecyclerAndAdapter();
         presenter = new ClassesFragmentPresenter(getContext(), this);
-        presenter.getAllClassesFromFireBase();
+        if (getArguments() != null && getArguments().containsKey(Constants.GYM_CLASSES) &&
+                getArguments().getSerializable(Constants.GYM_CLASSES) != null) {
+            notifyFragmentWithClassesList((List<ClassModel>) getArguments().getSerializable(Constants.GYM_CLASSES));
+        } else {
+            presenter.getAllClassesFromFireBase();
+        }
         return view;
     }
 

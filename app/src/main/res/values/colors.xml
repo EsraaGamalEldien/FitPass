@@ -8,5 +8,7 @@
     <color name="cyan_50">#E0F7FA</color>
     <color name="blue_gray_50">#ECEFF1</color>
     <color name="black_transparent">#D9000000</color>
+    <color name="gray">#bdbdbd</color>
+    <color name="classDetailsDuration_textColor">#8fff</color>
 
 </resources>

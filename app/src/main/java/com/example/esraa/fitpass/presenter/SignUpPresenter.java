@@ -55,7 +55,7 @@ public class SignUpPresenter extends BasePresenter implements ISignUpPresenter {
     private void saveUserAndNavigate(final String userId) {
         final UserModel user = new UserModel();
         user.setUserId(userId);
-        databaseReference.child("users").push().setValue(user,
+        databaseReference.child(Constants.USERS).push().setValue(user,
                 new DatabaseReference.CompletionListener() {
                     public void onComplete(DatabaseError error,
                                            @NonNull DatabaseReference databaseReference) {

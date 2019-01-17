@@ -13,6 +13,24 @@ public class GymModel implements Serializable {
     private String phone;
     private boolean isFavourite;
     private List<ClassModel> gymClasses;
+    private String amenities;
+    private String website;
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
+    }
 
     public String getGymId() {
         return gymId;

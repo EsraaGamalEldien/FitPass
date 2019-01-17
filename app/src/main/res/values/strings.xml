@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitPass</string>
+    <string name="app_name">Fit Pass</string>
     <string name="facebook_app_id">534842617000190</string>
     <string name="fb_login_protocol_scheme">fb534842617000190</string>
     <string name="title_classes">Classes</string>
@@ -7,5 +7,35 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_settings">Settings</string>
     <string name="photo_shared_element">photo_shared_element</string>
+    <string name="subscribed">Subscribed</string>
+    <string name="class_subscribed_successfull">class subscribed successfully</string>
+    <string name="info">Info</string>
+    <string name="classes">Classes</string>
+    <string name="mandatory_field">mandatory field</string>
+    <string name="validation_pass_6_char">password shouldn\'t be less than 6 characters</string>
+    <string name="packages">packages</string>
+    <string name="subscribe_package_msg">do you want to subscribe to package  12 class with 2 $</string>
+    <string name="phone_icon">phone icon</string>
+    <string name="marker">marker</string>
+    <string name="address">Address</string>
+    <string name="instructor">Instructor</string>
+    <string name="phone">Phone</string>
+    <string name="description">Description</string>
+    <string name="gym_image">gym image</string>
+    <string name="get_started">Get Started</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="log_in">log in</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="or">OR</string>
+    <string name="create_account">create account</string>
+    <string name="website">WebSite</string>
+    <string name="amenities">Amenities</string>
+    <string name="activities">Activities</string>
+    <string name="about">About</string>
+    <string name="there_is_no_favorite_gyms">there is no favorite gyms</string>
+    <string name="log_out">log out</string>
+    <string name="class_icon">class icon</string>
+    <string name="subscribe">subscribe</string>
 
 </resources>

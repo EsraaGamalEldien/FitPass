@@ -2,6 +2,7 @@ package com.example.esraa.fitpass.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.example.esraa.fitpass.R;
 import com.example.esraa.fitpass.activity.ClassDetailsActivity;
 import com.example.esraa.fitpass.model.ClassModel;
 import com.example.esraa.fitpass.util.Constants;
+import com.example.esraa.fitpass.util.GetLocationManager;
 
 import java.util.List;
 
@@ -40,13 +42,24 @@ public class ClassesAdapter extends RecyclerView.Adapter<ClassViewHolder> {
         classViewHolder.durationTextView.setText(model.getDuration());
         classViewHolder.titleTextView.setText(model.getTitle());
         classViewHolder.categoryTextView.setText(model.getType());
-        classViewHolder.locationTextView.setText(model.getLat() + model.getLon());
+        classViewHolder.locationTextView.setText(GetLocationManager.getCityFromLatAndLon(
+                context, Double.parseDouble(model.getLat())
+                , Double.parseDouble(model.getLon())));
         classViewHolder.classCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navigateToClassDetails(model);
             }
         });
+        Drawable classIcon = context.getResources().getDrawable(R.drawable.ic_sport_shoes_icon);
+        if (model.getType().equalsIgnoreCase(String.valueOf(ClassModel.ClassType.CYCLING))) {
+            classIcon = context.getResources().getDrawable(R.drawable.ic_cycling_icon);
+
+        } else if (model.getType().equalsIgnoreCase(String.valueOf(ClassModel.ClassType.YOGA))) {
+            classIcon = context.getResources().getDrawable(R.drawable.ic_yoga_icon);
+        }
+
+        classViewHolder.classIconImageView.setImageDrawable(classIcon);
     }
 
     private void navigateToClassDetails(ClassModel model) {

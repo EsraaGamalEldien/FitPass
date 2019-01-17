@@ -2,17 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_classes"
+        android:icon="@drawable/ic_class_tab"
         android:title="@string/title_classes" />
 
     <item
         android:id="@+id/navigation_gyms"
+        android:icon="@drawable/ic_gyms_tab_icon"
         android:title="@string/title_gyms" />
 
     <item
         android:id="@+id/navigation_favorites"
+        android:icon="@drawable/ic_favorite_tab_icon"
         android:title="@string/title_favorites" />
 
     <item
         android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_setting_tab_icon"
         android:title="@string/title_settings" />
 </menu>

@@ -1,5 +1,7 @@
 package com.example.esraa.fitpass.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,15 +15,19 @@ import com.example.esraa.fitpass.R;
 import com.example.esraa.fitpass.activity.GymDetailsActivity;
 import com.example.esraa.fitpass.model.GymModel;
 import com.example.esraa.fitpass.util.Constants;
+import com.example.esraa.fitpass.util.GetLocationManager;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class GymsAdapter extends RecyclerView.Adapter<GymViewHolder> {
     private List<GymModel> gymModelList;
     private Context context;
+    private Activity activity;
 
-    public GymsAdapter(List<GymModel> gymModelList) {
+    public GymsAdapter(List<GymModel> gymModelList, Activity activity) {
         this.gymModelList = gymModelList;
+        this.activity = activity;
     }
 
     @NonNull
@@ -34,18 +40,27 @@ public class GymsAdapter extends RecyclerView.Adapter<GymViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GymViewHolder gymViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final GymViewHolder gymViewHolder, int i) {
         final GymModel model = gymModelList.get(i);
         gymViewHolder.gymTitleTextView.setText(model.getName());
-        gymViewHolder.gymLocationTextView.setText(model.getLat() + model.getLon());
+        gymViewHolder.gymLocationTextView.setText(GetLocationManager.getCityFromLatAndLon(
+                context, Double.parseDouble(model.getLat())
+                , Double.parseDouble(model.getLon())));
         gymViewHolder.gymCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, GymDetailsActivity.class);
                 intent.putExtra(Constants.GYM_MODEL, model);
-                context.startActivity(intent);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(activity,
+                            gymViewHolder.gymImageView, gymViewHolder.gymImageView.getTransitionName()).toBundle();
+                    context.startActivity(intent, bundle);
+                } else {
+                    context.startActivity(intent);
+                }
             }
         });
+        Picasso.get().load(model.getImagesUrls().get(0)).into(gymViewHolder.gymImageView);
     }
 
     @Override

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -12,86 +11,102 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/gym_details_layout_horizontal_margin"
+            android:layout_marginStart="@dimen/gym_details_layout_horizontal_margin"
+            android:layout_marginTop="@dimen/gym_details_layout_top_margin"
             android:orientation="vertical">
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="About" />
+                android:layout_marginBottom="@dimen/textView_label_bottom_margin"
+                android:text="@string/about"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gym_details_about_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="@dimen/details_textView_bottom_margin"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Activities" />
+                android:layout_marginBottom="@dimen/textView_label_bottom_margin"
+                android:text="@string/activities"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gym_details_activities_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="@dimen/details_textView_bottom_margin"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Amenities" />
+                android:layout_marginBottom="@dimen/textView_label_bottom_margin"
+                android:text="@string/amenities"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gym_details_amenities_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="@dimen/details_textView_bottom_margin"
+                android:textColor="@color/black" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="WebSite" />
+                android:layout_marginBottom="@dimen/textView_label_bottom_margin"
+                android:text="@string/website"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gym_details_website_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="@dimen/details_textView_bottom_margin"
+                android:textColor="@color/colorPrimaryDark" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Phone" />
+                android:layout_marginBottom="@dimen/textView_label_bottom_margin"
+                android:text="@string/phone"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gym_details_phone_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="@dimen/details_textView_bottom_margin"
+                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Address" />
+                android:layout_marginBottom="@dimen/textView_label_bottom_margin"
+                android:text="@string/address"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/gym_details_address_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp" />
-
+                android:layout_marginBottom="@dimen/details_textView_bottom_margin"
+                android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
