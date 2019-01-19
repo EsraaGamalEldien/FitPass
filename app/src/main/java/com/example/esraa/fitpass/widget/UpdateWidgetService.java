@@ -38,26 +38,12 @@ public class UpdateWidgetService extends JobIntentService {
 
         for (int widgetId : allWidgetIds) {
             if (SharedPreferenceManager.getInstance().getString(Constants.USER_ID) != null) {
-                getAllClassesFromFireBase();
+                getAllClassesFromFireBase(appWidgetManager);
             }
-
-            // Register an onClickListener
-//            Intent clickIntent = new Intent(this.getApplicationContext(),
-//                    AppWidgetProvider.class);
-//
-//            clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-//            clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-//                    allWidgetIds);
-//
-//            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-//                    getApplicationContext(), 0, clickIntent,
-//                    PendingIntent.FLAG_UPDATE_CURRENT);
-//            remoteViews.setOnClickPendingIntent(R.id.class_title_textView, pendingIntent);
-//            appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }
 
-    private void getAllClassesFromFireBase() {
+    private void getAllClassesFromFireBase(final AppWidgetManager appWidgetManager) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child(Constants.CLASSES).addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,7 +56,7 @@ public class UpdateWidgetService extends JobIntentService {
                 if (classesList != null) {
                     randomNumber = (new Random().nextInt(classesList.size()));
                     ClassModel classModel = classesList.get(randomNumber);
-                    updateWidgetLayoutWithRandomClass(classModel);
+                    updateWidgetLayoutWithRandomClass(classModel, appWidgetManager);
                 }
             }
 
@@ -81,17 +67,22 @@ public class UpdateWidgetService extends JobIntentService {
 
     }
 
-    private void updateWidgetLayoutWithRandomClass(ClassModel classModel) {
+    private void updateWidgetLayoutWithRandomClass(ClassModel classModel, AppWidgetManager appWidgetManager) {
         RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(),
                 R.layout.layout_widget);
-//        int classIcon = R.drawable.ic_sport_shoes_icon;
-//        if (classModel.getType().equalsIgnoreCase(String.valueOf(ClassModel.ClassType.CYCLING))) {
-//            classIcon = R.drawable.ic_cycling_icon;
-//        } else if (classModel.getType().equalsIgnoreCase(String.valueOf(ClassModel.ClassType.YOGA))) {
-//            classIcon = R.drawable.ic_yoga_icon;
-//        }
+        int classIcon = R.drawable.ic_sport_shoes_icon;
+        if (classModel.getType().equalsIgnoreCase(String.valueOf(ClassModel.ClassType.CYCLING))) {
+            classIcon = R.drawable.ic_cycling_icon;
+        } else if (classModel.getType().equalsIgnoreCase(String.valueOf(ClassModel.ClassType.YOGA))) {
+            classIcon = R.drawable.ic_yoga_icon;
+        }
         remoteViews.setTextViewText(R.id.widget_class_title, classModel.getTitle());
-//        remoteViews.setImageViewResource(R.id.widget_class_icon, classIcon);
+        remoteViews.setImageViewResource(R.id.widget_class_icon, classIcon);
+
+//        Intent appIntent = new Intent(this.getApplicationContext(), MainActivity.class);
+//        PendingIntent appPendingIntent = PendingIntent.getActivity(this.getApplicationContext(),
+//                0, appIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        remoteViews.setOnClickPendingIntent(R.id.widget_relative_layout, appPendingIntent);
     }
 
 }

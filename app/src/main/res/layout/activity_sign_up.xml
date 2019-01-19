@@ -14,7 +14,8 @@
         android:layout_height="@dimen/fit_pass_logo_height"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/fit_pass_logo_margin"
-        android:src="@drawable/fitpass_logo" />
+        android:src="@drawable/fitpass_logo"
+        android:contentDescription="@string/fit_pass_logo"/>
 
     <LinearLayout
         android:layout_width="match_parent"

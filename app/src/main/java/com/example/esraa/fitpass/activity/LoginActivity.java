@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.example.esraa.fitpass.R;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private static final int GOOGLE_SIGN_IN = 1;
     private final String TAG = LoginActivity.this.getClass().getSimpleName();
     @BindView(R.id.fb_login_button)
@@ -67,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException exception) {
+                Log.d(TAG,exception.getMessage());
             }
         });
     }
@@ -93,11 +95,11 @@ public class LoginActivity extends AppCompatActivity {
     public void loginWithMail(View view) {
         String mail = userNameEditText.getText().toString();
         String pass = passwordEditText.getText().toString();
-        if (mail.isEmpty()) {
+        if (TextUtils.isEmpty(mail)) {
             emailTextInput.setError(getString(R.string.mandatory_field));
             emailTextInput.setBackgroundColor(getResources().getColor(R.color.white));
         }
-        if (pass.isEmpty()) {
+        if (TextUtils.isEmpty(pass)) {
             passwordTextInput.setError(getString(R.string.mandatory_field));
             passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
@@ -106,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
         }
-        if (!mail.isEmpty() && !pass.isEmpty() && pass.length() >= 6) {
+        if (!TextUtils.isEmpty(mail) && !TextUtils.isEmpty(pass) && pass.length() >= 6) {
             presenter.signInWithMailAndPass(mail, pass);
         }
     }
@@ -129,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        presenter.hideProgressDialog();
         super.onDestroy();
         presenter.deleteEventListenerOfDatabase();
     }

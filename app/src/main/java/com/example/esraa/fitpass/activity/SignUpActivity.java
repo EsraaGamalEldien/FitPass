@@ -3,7 +3,7 @@ package com.example.esraa.fitpass.activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.example.esraa.fitpass.R;
@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
 
     private final String TAG = SignUpActivity.this.getClass().getSimpleName();
     @BindView(R.id.email_editText)
@@ -40,11 +40,11 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString();
         String pass = passEditText.getText().toString();
 
-        if (email.isEmpty()) {
+        if (TextUtils.isEmpty(email)) {
             emailTextInput.setError(getString(R.string.mandatory_field));
             emailTextInput.setBackgroundColor(getResources().getColor(R.color.white));
         }
-        if (pass.isEmpty()) {
+        if (TextUtils.isEmpty(pass)) {
             passwordTextInput.setError(getString(R.string.mandatory_field));
             passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
             passwordTextInput.setBackgroundColor(getResources().getColor(R.color.white));
 
         }
-        if (!email.isEmpty() && !pass.isEmpty() && pass.length() >= 6) {
+        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && pass.length() >= 6) {
             signUpPresenter.createUserAccount(email, pass);
         }
     }

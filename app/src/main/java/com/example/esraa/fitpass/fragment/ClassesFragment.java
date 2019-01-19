@@ -60,7 +60,7 @@ public class ClassesFragment extends Fragment implements IClassesFragmentView {
         List<ClassModel> classModelList = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        classesAdapter = new ClassesAdapter(classModelList);
+        classesAdapter = new ClassesAdapter(classModelList,getActivity());
         classesRecyclerView.setLayoutManager(layoutManager);
         classesRecyclerView.setAdapter(classesAdapter);
     }

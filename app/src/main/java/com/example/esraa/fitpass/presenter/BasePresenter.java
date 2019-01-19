@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
+import com.example.esraa.fitpass.R;
+
 public class BasePresenter implements IBasePresenter {
 
     private ProgressDialog progressdialog;
@@ -19,7 +21,7 @@ public class BasePresenter implements IBasePresenter {
         hideProgressDialog();
         final AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(context);
-        builder.setTitle("Error")
+        builder.setTitle(R.string.error)
                 .setMessage(msg)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -41,7 +43,7 @@ public class BasePresenter implements IBasePresenter {
 
     public void showProgressDialog(Context context) {
         progressdialog = new ProgressDialog(context);
-        progressdialog.setMessage("Please Wait....");
+        progressdialog.setMessage(context.getString(R.string.please_wait));
         progressdialog.show();
     }
 

@@ -109,7 +109,7 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
         if (userModel == null || userModel.getUserClasses() == null) return;
         for (int i = 0; i < userModel.getUserClasses().size(); i++) {
             if (classModel.getClassId().equalsIgnoreCase(userModel.getUserClasses().get(i).getClassId())) {
-                view.dimmSubscribeButton();
+                view.dimSubscribeButton();
             }
         }
     }
@@ -139,7 +139,7 @@ public class ClassDetailsActivityPresenter extends BasePresenter implements ICla
                             showErrorAlert(context, error.getMessage());
                         }else{
                             view.showSuccessToast();
-                            view.dimmSubscribeButton();
+                            view.dimSubscribeButton();
                         }
                     }
                 });

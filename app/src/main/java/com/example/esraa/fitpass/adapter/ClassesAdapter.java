@@ -1,5 +1,6 @@
 package com.example.esraa.fitpass.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -20,9 +21,11 @@ import java.util.List;
 public class ClassesAdapter extends RecyclerView.Adapter<ClassViewHolder> {
     private List<ClassModel> classModelList;
     private Context context;
+    private Activity activity;
 
-    public ClassesAdapter(List<ClassModel> classModelList) {
+    public ClassesAdapter(List<ClassModel> classModelList, Activity activity) {
         this.classModelList = classModelList;
+        this.activity = activity;
 
     }
 
@@ -66,6 +69,7 @@ public class ClassesAdapter extends RecyclerView.Adapter<ClassViewHolder> {
         Intent intent = new Intent(context, ClassDetailsActivity.class);
         intent.putExtra(Constants.CLASS_MODEL, model);
         context.startActivity(intent);
+        activity.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
     }
 
     @Override

@@ -133,7 +133,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements IClassDet
     }
 
     @Override
-    public void dimmSubscribeButton() {
+    public void dimSubscribeButton() {
         classSubscriberButton.setEnabled(false);
         classSubscriberButton.setClickable(false);
         classSubscriberButton.setText(R.string.subscribed);
@@ -141,7 +141,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements IClassDet
 
     @Override
     public void showSuccessToast() {
-        Toast.makeText(getApplicationContext(), R.string.class_subscribed_successfull, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), R.string.class_subscribed_successfully, Toast.LENGTH_SHORT).show();
     }
 
     public void inflateSubscribeButton() {
@@ -171,5 +171,11 @@ public class ClassDetailsActivity extends AppCompatActivity implements IClassDet
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
     }
 }
